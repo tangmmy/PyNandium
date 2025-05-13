@@ -1,5 +1,5 @@
 from typing import List
-from gates.gates import AND,XOR,OR,ZERO16,NOT16,ONE,OR16,AND16,NOT
+from gates.gates import AND,XOR,OR,ZERO16,NOT16,ONE,OR16,AND16,NOT,ONE16
 
 #Given a and b, return high bit(h) and low bit(l)
 def HALF_ADDER(a:bool, b:bool):#(h: bool , l : bool)
@@ -12,10 +12,10 @@ def FULL_ADDER(a:bool, b:bool,c:bool)->List[bool]:#(h: bool , l : bool)
     [h2,l2] = HALF_ADDER(l1,c)
     return [ OR(h1,h2) , l2 ]
 
-#if s = 0, b is selected, else a
-def MUX(s:bool,a:bool,b:bool):
-    a1 = AND(NOT(s),b)
-    a2 = AND(s,a)
+#if s = 0, d0 is selected, else d1
+def MUX(s:bool,d1:bool,d0:bool):
+    a1 = AND(NOT(s),d0)
+    a2 = AND(s,d1)
     return OR(a1,a2)
 
 
@@ -39,22 +39,25 @@ def _16BITS_ADDER(arr:List[bool],brr:List[bool])->List[bool]:
     return res
 
 
-def INCREMENT(arr:List[bool]):
-    res = _16BITS_ADDER(arr,ONE())
+def INCREMENT(arr:List[bool])->List[bool]:
+    res = _16BITS_ADDER(arr,ONE16())
     return res
 
 
-def _16BITS_MINUS(arr:List[bool],brr:List[bool]):
+def _16BITS_MINUS(arr:List[bool],brr:List[bool])->bool:
     return INCREMENT( _16BITS_ADDER(arr,NOT16(brr)))
 
 def _16BITS_LESS_THAN_ZERO(arr:List[bool]):
-    return arr[0]
+    return arr[15]
 
-def _16BITS_LESS_THAN_ZERO(arr:List[bool]):
-    return arr[0]
+def _16BITS_EQUAL_ZERO(arr:List[bool])->bool:
+    for i in range(16):
+        if(arr[i]==True):
+            return True
+    return False
 
-def _16BITS_MUX(arr:List[bool],brr:List[bool],select:bool):
+def _16BITS_MUX(select:bool,d1:List[bool],d0:List[bool])->List[bool]:
     res = []
     for i in range(16):
-        res.append(MUX(select,arr[i],brr[i]))
+        res.append(MUX(select,d1[i],d0[i]))
     return res

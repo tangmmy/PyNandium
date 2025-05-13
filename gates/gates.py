@@ -32,8 +32,9 @@ def XOR(a:bool, b:bool):
 def ZERO16():
     return [0]*16
 
-def ONE():
+def ONE16():
     return [1]+[0]*15
+
 def NOT16(a: List[bool]):
     result = []
     for i in range(16):
@@ -52,12 +53,7 @@ def OR16(a: List[bool],b: List[bool]):
         a[i] = OR(a[i],b[i])
     return a
 
-
-
-
-
-
-
-
-
-
+def XOR16(a: List[bool],b: List[bool]):
+    for i in range(16):
+        a[i] = XOR(a[i],b[i])
+    return a

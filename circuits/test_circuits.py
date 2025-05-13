@@ -88,8 +88,8 @@ class TestIncrementFunction(unittest.TestCase):
 
     def test_increment_no_carry(self):
         # Test incrementing a 16-bit number with no carry
-        input_arr = [0] * 15 + [1]  # Binary: 0000...0001
-        expected_output = [1]+[0] * 14 + [1]  # Binary: 0000...0010
+        input_arr = [0] * 15 + [1]  # Binary: 1000...0000
+        expected_output = [1]+[0] * 14 + [1]  # Binary: 1000...001
         self.assertEqual(INCREMENT(input_arr), expected_output)
 
     def test_increment_with_carry(self):

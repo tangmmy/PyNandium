@@ -44,6 +44,30 @@ This project is inspired by the spirit of "Nand2Tetris", but implemented entirel
 ## 🔧 Getting Started
 
 ```bash
-git clone https://github.com/your-username/pynandium.git
+git clone https://github.com/tangmmy/pynandium.git
 cd pynandium
 python run.py
+```
+
+## 📂 Project Structure (Planned)
+
+```
+pynandium/
+│
+├── gates/          # NAND, AND, OR, NOT, etc.
+├── circuits/       # Adders, multiplexers, etc.
+├── sequential/     # Flip-flops, registers, RAM
+├── cpu/            # ALU, control unit, PC
+├── isa/            # Instruction formats
+├── assembler/      # Assembler from assembly to binary
+├── vm/             # Virtual machine runtime
+├── programs/       # Sample programs to run
+└── run.py          # Entry point to run a program on the machine
+```
+
+
+## 🤝 Contributions
+Contributions, ideas, and discussions are welcome! This project is about learning and building from first principles, so feel free to fork and experiment.
+
+## 📘 License
+MIT License
